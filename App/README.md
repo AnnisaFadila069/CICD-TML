@@ -1,4 +1,3 @@
-# CICD-TML
 ---
 title: Drug Classification
 emoji: 💊
@@ -9,4 +8,5 @@ sdk_version: 5.24.0
 app_file: drug_app.py
 pinned: false
 license: apache-2.0
+short_description: Praktikum CI/CD TML 1
 ---
