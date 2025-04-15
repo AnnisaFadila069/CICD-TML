@@ -15,16 +15,30 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: iterative/setup-cml@v2
+
       - name: Install Packages
         run: make install
+
       - name: Format
         run: make format
+
       - name: Train
         run: make train
+
+      - name: 🔍 DEBUG - List files before evaluation
+        run: |
+          echo "---- Listing folder structure ----"
+          ls -R
+          echo "---- Checking contents of Results folder ----"
+          ls -l Results || echo "Folder 'Results' not found"
+          cat Results/metrics.txt || echo "metrics.txt not found"
+          ls Results/model_results.png || echo "model_results.png not found"
+
       - name: Evaluation
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: make eval
+
       - name: Update Branch
         env:
           NAME: ${{ secrets.USER_NAME }}
